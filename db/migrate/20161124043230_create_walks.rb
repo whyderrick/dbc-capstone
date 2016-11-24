@@ -10,5 +10,8 @@ class CreateWalks < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_foreign_key :walks, :users, column: :requester_id
+    add_foreign_key :walks, :users, column: :guardian_id
   end
 end
