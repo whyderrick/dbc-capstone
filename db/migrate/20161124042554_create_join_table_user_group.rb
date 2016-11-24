@@ -3,7 +3,7 @@ class CreateJoinTableUserGroup < ActiveRecord::Migration[5.0]
     create_join_table :users, :groups do |t|
     	t.boolean :admin
 
-      t.index :member_id
+      t.index :user_id
       t.index :group_id
     end
   end
