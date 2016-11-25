@@ -17,7 +17,27 @@ RSpec.describe Conversation, type: :model do
       )
 
       expect(convo).to be_valid
-
     end
+
+    it "is invalid without a message" do
+      convo = Conversation.new(
+        user_id: user.id,
+        walk_id: walk.id
+      )
+
+      expect(convo).not_to be_valid
+    end
+
+
+    it "is invalid without a walk" do
+      convo = Conversation.new(
+        msg: "I'm a message",
+        user_id: user.id
+      )
+    end
+  end
+
+  describe "Associations" do
+    it {should belong_to( :walk )}
   end
 end
