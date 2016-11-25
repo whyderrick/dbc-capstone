@@ -2,6 +2,13 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.all
+    @group_title = params[:group_title]
+    if @group_title
+      @groups = Group.search(@group_title)
+      render :index
+    else 
+      @groups = Group.all
+    end
   end
 
   def new

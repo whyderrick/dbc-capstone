@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/delete'
-
  	root 'welcome#index'
 
  	# Session Routes
@@ -17,11 +11,12 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   # Channel Routes
-  get '/channels/index' => 'channels#index'
+  get '/groups/index' => 'groups#index'
 
  	resources :welcome, only: :index
   resources :users
   resources :groups
+  resources :session
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
