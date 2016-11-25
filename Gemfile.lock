@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     awesome_print (1.7.0)
+    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -81,6 +82,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    materialize-sass (0.97.8)
+      sass (~> 3.3)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -185,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   byebug
@@ -193,6 +197,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  materialize-sass
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
@@ -207,4 +212,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
