@@ -8,6 +8,6 @@
 <ul class="collection with-header">
 		<li class="collection-header"><h4>List of all the groups</h4></li>
 		<% @groups.each do |group|%>
-    <li class="collection-item"><div><%= group.name %><a href="#!" class="secondary-content"><%= group.location %></a></div></li>
+    <li class="collection-item"><div><%= group.name %><a href="/groups/<%= group.id %>" class="secondary-content"><%= group.location %></a></div></li>
    	<% end %>
 </ul>
