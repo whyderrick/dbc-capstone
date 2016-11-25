@@ -12,9 +12,18 @@ class GroupsController < ApplicationController
   end
 
   def new
+    @group = Group.new
   end
 
   def create
+    @group = Group.new(groups_params)
+
+    if @group.save
+      redirect_to '/groups/index'
+    else 
+      @errors = @group.errors.full_messages
+      render :new
+    end 
   end
 
   def show
@@ -28,4 +37,11 @@ class GroupsController < ApplicationController
 
   def delete
   end
+
+private
+
+  def groups_params
+    params.require(:group).permit(:name, :location)
+  end
+
 end
