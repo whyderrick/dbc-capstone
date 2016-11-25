@@ -6,5 +6,5 @@ class User < ApplicationRecord
   # has_many :groups, through: :user_groups
   has_many :requested_walks, foreign_key: :requester_id, class_name: 'Walk'
   has_many :guarded_walks, foreign_key: :guardian_id, class_name: 'Walk'
-	validates :username, :email, :password_digest, :verified, { presence: :true }
+	validates :username, :email, :password_digest, { presence: :true }
 end
