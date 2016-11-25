@@ -1,13 +1,13 @@
 <nav>
   <div class="nav-wrapper">
-  	<a href="/" class="brand-logo">Anachronism</a>
+  	<a href="/" class="brand-logo">Guardian</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if current_user %>
 		    <li><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
 		    <li><a href="/logout">Logout</a></li>
 		  <% else %>
 			  <li><a href="/signup" class="waves-effect waves-light btn">Signup</a></li>
-			  <li><a href="/login"></i>Login</a></li>
+			  <li><a href="/login" class="waves-effect waves-light btn"></i>Login</a></li>
 		  <% end %>
     </ul>
   </div>
