@@ -1,0 +1,17 @@
+<%= form_for @user do |f| %>
+		<%= label_tag(:username, "User Name:") %>
+	  <%= f.text_field :username, class: "validate" %>
+
+
+ 		<%= label_tag(:email, "Email:") %>
+ 		<%= f.email_field :email, class: "validate" %>
+
+ 		<%= label_tag(:password, "Password:") %>
+ 		<%= f.password_field :password, class: "validate" %>
+
+ 		<%= label_tag(:password_confirmation, "Password Confirmation:") %>
+ 		<%= f.password_field :password_confirmation, class: "validate" %>
+
+  	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
+  	
+<% end %>

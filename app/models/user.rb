@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	has_secure_password
+
 	has_many :photos
   has_and_belongs_to_many :groups, foreign_key: :member_id
   # has_many :groups, through: :user_groups
