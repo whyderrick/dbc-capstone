@@ -22,7 +22,6 @@ RSpec.describe User, type: :model do
     end
 
     it "has a verified property" do
-      expect( !!user.verified ).to eq true
       expect( user.verified ).to eq true
     end
   end

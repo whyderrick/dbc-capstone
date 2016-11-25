@@ -1,5 +1,5 @@
 class Conversation < ApplicationRecord
-  belongs_to :walks
+  belongs_to :walk
 
   validates :msg, { presence: :true }
 end
