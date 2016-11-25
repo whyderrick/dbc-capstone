@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125180809) do
+ActiveRecord::Schema.define(version: 20161125172956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(version: 20161125180809) do
   end
 
   create_table "reports", force: :cascade do |t|
+    t.integer  "walks_id"
     t.string   "reported_party"
     t.text     "details"
     t.boolean  "follow_up"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "walk_id"
-    t.index ["walk_id"], name: "index_reports_on_walk_id", using: :btree
+    t.index ["walks_id"], name: "index_reports_on_walks_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20161125180809) do
 
   add_foreign_key "conversations", "walks"
   add_foreign_key "photos", "users"
-  add_foreign_key "reports", "walks"
+  add_foreign_key "reports", "walks", column: "walks_id"
   add_foreign_key "walks", "users", column: "guardian_id"
   add_foreign_key "walks", "users", column: "requester_id"
 end
