@@ -1,19 +1,20 @@
 class WalksController < ApplicationController
+  
   def index
+    @walks = Walk.all
   end
 
   def new
     current_user
-    p @current_user
     @walk = Walk.new
   end
 
   def create
     @user = User.find_by_id(params[:user_id])
     @walk = Walk.new(walks_params)
-    @walk.user = @current_user
-    @user.walks << @walk
-
+    @current_user = current_user
+    @walk.requester_id = current_user.id
+  
     if @walk.save
       redirect_to '/groups/index'
     else 

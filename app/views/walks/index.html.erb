@@ -1,2 +1,9 @@
-<h1>Walks#index</h1>
-<p>Find me in app/views/walks/index.html.erb</p>
+<h1>All the walks</h1>
+
+<% @walks.each do |walk|%>
+<%= walk.starting_location %>
+<%= walk.accepted %>
+<%= walk.requester_id %>
+<%= walk.destination %>
+<%= walk.walk_time %>
+<% end %>
