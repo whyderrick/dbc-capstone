@@ -1,0 +1,15 @@
+<%= form_for @group do |f| %>
+	<div class="input-field col s10">
+		<%= label_tag(:name, "Name:") %>
+	  <%= f.text_field :name, class: "validate" %>
+  </div>
+
+  <div class="input-field col s10">
+ 		<%= label_tag(:location, "Location:") %>
+ 		<%= f.text_field :location, class: "validate" %>
+  </div>
+
+  <div class="input-field col s10">
+  	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
+  </div>
+<% end %>

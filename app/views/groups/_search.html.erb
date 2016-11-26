@@ -3,9 +3,8 @@
     <div class="row">
 			<%= form_tag(groups_path, :method => "get") do %>
 				<div class="input-field col s12">
-		      <!-- <i class="material-icons prefix">search</i> -->
 				  <%= text_field_tag :group_title, params[:group_title], placeholder: "Search Groups" %>
-				  <%= submit_tag "Search", :name => nil, type: "hidden", :utf8 => nil %>
+				  <%= submit_tag "Search", type: "hidden" %>
 				</div>   
 			<% end %>
 		</div>

@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
  	resources :welcome, only: :index
   resources :users
-  resources :groups
+  resources :groups do
+  	resources :walks
+  end 
   resources :session
 
   # Action Cable Routes 

@@ -1,0 +1,20 @@
+<%= form_for @walk do |f| %>
+	<div class="input-field col s12">
+		<%= label_tag(:starting_location, "Starting location:") %>
+	  <%= f.text_field :starting_location, class: "validate" %>
+  </div>
+
+  <div class="input-field col s12">
+ 		<%= label_tag(:destination, "destination:") %>
+ 		<%= f.text_field :destination, class: "validate" %>
+  </div>
+
+  <div class="input-field col s12">
+ 		<%= label_tag(:walk_time, "Time to go:") %>
+ 		<%= f.text_field :walk_time, class: "validate" %>
+  </div>
+
+  <div class="input-field col s12">
+  	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
+  </div>
+<% end %>

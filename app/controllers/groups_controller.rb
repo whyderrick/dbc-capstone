@@ -2,10 +2,10 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.all
-    @group_title = params[:group_title]
-    if @group_title
-      @groups = Group.search(@group_title)
-      render :index
+    @group_name = params[:group_name]
+    if @group_name
+      @groups = Group.search(@group_name)
+      # render :index
     else 
       @groups = Group.all
     end
@@ -28,6 +28,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    #@walk.id=requester_id
   end
 
   def edit
