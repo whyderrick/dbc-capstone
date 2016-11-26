@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125172956) do
+ActiveRecord::Schema.define(version: 20161126201116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +27,25 @@ ActiveRecord::Schema.define(version: 20161125172956) do
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
-  create_table "groups_users", id: false, force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "group_id",  null: false
-    t.boolean "admin"
-    t.index ["group_id"], name: "index_groups_users_on_group_id", using: :btree
-    t.index ["member_id"], name: "index_groups_users_on_member_id", using: :btree
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "group_id"
+    t.boolean  "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id", using: :btree
+    t.index ["member_id"], name: "index_memberships_on_member_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -68,15 +77,17 @@ ActiveRecord::Schema.define(version: 20161125172956) do
 
   create_table "walks", force: :cascade do |t|
     t.string   "starting_location"
-    t.integer  "walk_time"
     t.boolean  "accepted"
     t.integer  "requester_id"
     t.integer  "guardian_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.datetime "walk_time"
   end
 
   add_foreign_key "conversations", "walks"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users", column: "member_id"
   add_foreign_key "photos", "users"
   add_foreign_key "reports", "walks", column: "walks_id"
   add_foreign_key "walks", "users", column: "guardian_id"
