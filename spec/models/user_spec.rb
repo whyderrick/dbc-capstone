@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
   describe "it has associations" do
     it {should have_many(:photos)}
 
-    it {should have_and_belong_to_many(:groups)}
+    it {should have_many(:groups).through(:memberships)}
 
     it {should have_many(:requested_walks)}
 
