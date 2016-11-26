@@ -3,20 +3,22 @@ class WalksController < ApplicationController
   end
 
   def new
+    current_user
+    p @current_user
     @walk = Walk.new
   end
 
   def create
-    @group = Group.find(params[:id])
+    @user = User.find_by_id(params[:user_id])
     @walk = Walk.new(walks_params)
+    @walk.user = @current_user
+    @user.walks << @walk
 
     if @walk.save
       redirect_to '/groups/index'
     else 
-      @errors = @group.errors.full_messages
-      render :new
+      render '/'
     end 
-
    
   end
 

@@ -1,4 +1,4 @@
-<%= form_for @walk do |f| %>
+<%= form_for [@current_user, @walk] do |f| %>
 	<div class="input-field col s12">
 		<%= label_tag(:starting_location, "Starting location:") %>
 	  <%= f.text_field :starting_location, class: "validate" %>
