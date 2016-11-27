@@ -1,5 +1,5 @@
 class WalksController < ApplicationController
-  
+
   def index
     @walks = Walk.all
   end
@@ -10,17 +10,15 @@ class WalksController < ApplicationController
   end
 
   def create
-    @user = User.find_by_id(params[:user_id])
     @walk = Walk.new(walks_params)
-    @current_user = current_user
     @walk.requester_id = current_user.id
-  
+
     if @walk.save
-      redirect_to '/groups/index'
-    else 
+      redirect_to user_walks(@user)
+    else
       render '/'
-    end 
-   
+    end
+
   end
 
   def show
@@ -35,7 +33,7 @@ class WalksController < ApplicationController
   def destroy
   end
 
-private 
+private
 
   def walks_params
     params.require(:walk).permit(:starting_location, :walk_time, :destination)
