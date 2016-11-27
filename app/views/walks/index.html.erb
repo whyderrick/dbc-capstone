@@ -1,0 +1,21 @@
+<h1>All the walks</h1>
+
+<div class="col s12 m6">
+  <h2 class="header"></h2>
+  <div class="card horizontal">
+
+		<div class="card-stacked">
+			<ul>
+				<% @walks.each do |walk|%>
+				<div id="cards-content">
+				<li><%= walk.starting_location %></li>
+				<li><%= walk.accepted %></li>
+				<li><%= walk.requester.username %></li>
+				<li><%= walk.destination %></li>
+				<li><%= walk.walk_time %></li>
+				<%= link_to '+', {:controller => "rooms", :action => "show" } %>
+				</div>
+			<% end %>
+			</ul>
+	</div>
+</div>

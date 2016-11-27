@@ -12,12 +12,16 @@ Rails.application.routes.draw do
   # User Routes
   get '/signup' => 'users#new'
 
-  # Channel Routes
+  # Group Routes
   get '/groups/index' => 'groups#index'
+  get '/groups/new' => 'groups#new'
+  post '/groups/new' => 'groups#create'
 
  	resources :welcome, only: :index
-  resources :users
   resources :groups
+  resources :users do
+  	resources :walks
+  end 
   resources :session
 
   # Action Cable Routes 
