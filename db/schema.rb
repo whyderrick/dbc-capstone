@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20161126203721) do
     t.integer  "guardian_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "destination"
     t.datetime "walk_time"
+    t.string   "destination"
   end
 
   add_foreign_key "conversations", "walks"
