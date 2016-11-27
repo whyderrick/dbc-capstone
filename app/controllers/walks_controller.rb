@@ -28,6 +28,14 @@ class WalksController < ApplicationController
   end
 
   def update
+    @walk = Walk.find(params[:id])
+    @walk.guardian_id ||= params[:guardian_id]
+
+    if @walk.save
+      redirect_to user_walk_path(@walk)
+    else
+      redirect_back
+    end
   end
 
   def destroy

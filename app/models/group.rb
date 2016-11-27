@@ -12,6 +12,6 @@ class Group < ApplicationRecord
     walks = members.map do |member|
       member.requested_walks.where( accepted: false )
     end
-    walks
+    walks.flatten
   end
 end

@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @walks = Group.available_walks
+    @walks = @group.available_walks
   end
 
   def edit
