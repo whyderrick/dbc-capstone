@@ -1,7 +1,7 @@
 class WalksController < ApplicationController
 
   def index
-    @walks = Walk.all
+    @walks = current_user.walks
   end
 
   def new
@@ -14,7 +14,7 @@ class WalksController < ApplicationController
     @walk.requester_id = current_user.id
 
     if @walk.save
-      redirect_to user_walks(@user)
+      redirect_to user_walks_path(current_user)
     else
       render '/'
     end

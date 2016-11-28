@@ -8,8 +8,15 @@ class User < ApplicationRecord
   has_many :guarded_walks, foreign_key: :guardian_id, class_name: 'Walk'
 	validates :username, :email, :password_digest, { presence: :true }
 
+  def walks
+    {
+      upcoming_walks: upcoming_walks,
+      recent_walks:   recent_walks 
+    }
+  end
+
   def upcoming_walks
-    user_walks = walks
+    user_walks = all_walks
 
     upcoming_walks = {
       upcoming_requests: user_walks[:requested_walks].where(
@@ -20,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def recent_walks
-    user_walks = walks
+    user_walks = all_walks
 
     recent_walks = {
       recent_requests: user_walks[:requested_walks].where(
@@ -34,7 +41,7 @@ class User < ApplicationRecord
   end
 
   private
-    def walks
+    def all_walks
       walks = { requested_walks: self.requested_walks,
                 guarded_walks:   self.guarded_walks }
     end
