@@ -1,4 +1,21 @@
 <h3>Welcome to the group : <%= @group.location%></h3>
-<p>Here is the list of all the requests for a walk</p>
+<p>Here is the list of available walk requests</p>
 
-<p>Make a request for a walk <a href="/walks/new">here</a></p>
+<div class="col s12 m6">
+  <h2 class="header"></h2>
+  <div class="card horizontal">
+
+		<div class="card-stacked">
+			<ul>
+				<% @walks.each do |walk|%>
+  				<div id="cards-content">
+    				<li><%= walk.starting_location %></li>
+    				<li><%= walk.requester.username %></li>
+    				<li><%= walk.destination %></li>
+    				<li><%= walk.walk_time %></li>
+            <%= link_to 'Accept Walk', user_walk_path(walk.requester, walk, guardian_id: current_user.id), method: :put %>
+  				</div>
+			<% end %>
+			</ul>
+	</div>
+</div>

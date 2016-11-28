@@ -4,4 +4,5 @@ class Walk < ApplicationRecord
   belongs_to :requester, class_name: :User
   has_one :guardian, class_name: :User
 
+
 end

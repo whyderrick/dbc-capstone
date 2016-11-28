@@ -5,9 +5,10 @@
 	<ul>
 		<li><a href="/groups/new" id="create_private_channel" class="waves-effect waves-light btn-large">Create a private channel</a></li>
 		<li><a href="/groups/index" id="create_private_channel" class="waves-effect waves-light btn-large">Join an existing channel</a></li>
-		<% if current_user %>
-		<li><a href="/users/<%=current_user.id%>/walks/new" class="waves-effect waves-light btn-large">Request a walk</a></li>
-		<% else %>
-		<% end %>
+
+    <% if current_user%>
+  		<li><a href="/users/<%=current_user.id%>/walks/new" class="waves-effect waves-light btn-large">Request a walk</a></li>
+    <% end %>
+
 	</ul>
 </div>
