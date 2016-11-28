@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161127222022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string   "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.string   "msg"
@@ -43,9 +51,13 @@ ActiveRecord::Schema.define(version: 20161127222022) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "chatroom_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
@@ -89,6 +101,8 @@ ActiveRecord::Schema.define(version: 20161127222022) do
   add_foreign_key "conversations", "walks"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users", column: "member_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "reports", "walks", column: "walks_id"
   add_foreign_key "walks", "users", column: "guardian_id"
