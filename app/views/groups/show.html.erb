@@ -8,9 +8,6 @@
 		<div class="card-stacked">
 			<ul>
 				<% @walks.each do |walk|%>
-          <div>
-            <%= walk.id %>
-          </div>
   				<div id="cards-content">
     				<li><%= walk.starting_location %></li>
     				<li><%= walk.requester.username %></li>
