@@ -13,7 +13,7 @@
 				<li><%= walk.requester.username %></li>
 				<li><%= walk.destination %></li>
 				<li><%= walk.walk_time %></li>
-				<%= link_to '+', {:controller => "rooms", :action => "show" } %>
+				<%= link_to '+ Accept this walk', {:controller => "rooms", :action => "show" } %>
 				</div>
 			<% end %>
 			</ul>
