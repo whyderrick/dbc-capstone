@@ -9,7 +9,36 @@ class User < ApplicationRecord
 	validates :username, :email, :password_digest, { presence: :true }
 
   def walks
-    walks = { requested_walks: self.requested_walks,
-              guarded_walks:   self.guarded_walks }
+    {
+      upcoming_walks: upcoming_walks,
+      recent_walks:   recent_walks
+    }
   end
+
+  def upcoming_walks
+    user_walks = all_walks
+
+    upcoming_requests =
+      user_walks[:requested_walks].where("walk_time < now()")
+    upcoming_guards =
+      user_walks[:guarded_walks].where( "walk_time < now()")
+
+    upcoming_walks = upcoming_requests + upcoming_guards
+
+  end
+
+  def recent_walks
+    user_walks = all_walks
+
+    recent_requests = user_walks[:requested_walks].where( "walk_time > now()" ).last(5)
+    recent_guards = user_walks[:guarded_walks].where( "walk_time > now()" ).last(5)
+
+    recent_walks = recent_requests + recent_guards
+  end
+
+  private
+    def all_walks
+      walks = { requested_walks: self.requested_walks,
+                guarded_walks:   self.guarded_walks }
+    end
 end
