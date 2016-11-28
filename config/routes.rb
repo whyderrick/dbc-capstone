@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'rooms/show' 
+  get 'rooms/show'
 
  	root 'welcome#index'
 
@@ -20,11 +20,29 @@ Rails.application.routes.draw do
  	resources :welcome, only: :index
   resources :groups
   resources :users do
-  	resources :walks
-  end 
-  resources :session
+    resources :walks
+  end
+  resources :sessions
 
-  # Action Cable Routes 
+  # API Routes
+  # When we're ready to deploy, we should consider hosting the api on a subdomain "api" instead and setting its path to root instead of using a separate domain. The code to do that is
+  #``` namespace :api, defaults: { format: 'json' },
+  #                    constraints: -> (request){ request.format == 'json' },
+  #                    subdomain: 'api',
+  #                    path: '/' do
+  # Putting the do on a separate line from the last constraint will cause an error.
+
+  namespace :api, defaults: { format: 'json' },
+                  constraints: -> (request){ request.format == 'json' } do
+    resources :welcome, only: :index
+    resources :groups
+    resources :users, except: :index do
+      resources :walks
+    end
+    resources :sessions
+  end
+
+  # Action Cable Routes
   mount ActionCable.server => '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
