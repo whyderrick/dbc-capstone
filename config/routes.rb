@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   end 
   resources :session
 
+  resources :chatrooms, param: :slug
+  resources :messages
+
   # Action Cable Routes 
   mount ActionCable.server => '/cable'
 
