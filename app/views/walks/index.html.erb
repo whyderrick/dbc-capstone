@@ -3,20 +3,28 @@
   <div class="col s12 m6">
     <h2 class="header"> Coming up soon</h2>
     <div class="card horizontal">
-  		<div class="card-stacked">
-  			<ul>
-  				<% @walks[:upcoming_walks].each do |walk|%>
-  				<div id="cards-content">
-  				<li><%= walk.starting_location %></li>
-  				<li><%= walk.accepted %></li>
-  				<li><%= walk.requester.username %></li>
-  				<li><%= walk.destination %></li>
-  				<li><%= walk.walk_time %></li>
-  				<%= link_to '+', {:controller => "chatrooms", :action => "show" } %>
-  				</div>
-  			<% end %>
-  			</ul>
-  	  </div>
+      <div class="card-stacked">
+        <ul>
+          <% @walks[:upcoming_walks].each do |walk|%>
+          <div id="cards-content">
+            <li>Starting location: <%= walk.starting_location %></li>
+            <li><%= walk.accepted %></li>
+            <li><%= walk.requester.username %> has requested a walk</li>
+            <li>Destination: <%= walk.destination %></li>
+            <li>Walk requested for: <%= walk.walk_time %></li>          <% if walk.accepted == true %>
+              <%= link_to 'Enter Chat', walk.chatroom %>
+            <% end %>
+            <div class="google-maps">
+              <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                    &destination=<%= walk.destination %>
+                    &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                    &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+              </iframe>
+            </div>
+          </div>
+        <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -32,7 +40,8 @@
           <li><%= walk.requester.username %></li>
           <li><%= walk.destination %></li>
           <li><%= walk.walk_time %></li>
-          <%= link_to '+', {:controller => "chatrooms", :action => "show" } %>
+          <%= link_to 'Reviews', '/' %>
+          <!-- This link is currently stubbed. Update before presentation-->  
           </div>
         <% end %>
         </ul>

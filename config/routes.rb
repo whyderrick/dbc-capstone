@@ -16,14 +16,21 @@ Rails.application.routes.draw do
   get '/groups/new' => 'groups#new'
   post '/groups/new' => 'groups#create'
 
+  resources :chatrooms, param: :slug
+  resources :messages
+
  	resources :welcome, only: :index
   resources :groups
+
   resources :users do
   	resources :walks
-  end 
+  end
+   
   resources :sessions
 
- 
+  resources :chatrooms, param: :slug 
+
+  resources :messages
 
   # API Routes
   # When we're ready to deploy, we should consider hosting the api on a subdomain "api" instead and setting its path to root instead of using a separate domain. The code to do that is
@@ -44,11 +51,8 @@ Rails.application.routes.draw do
   end
 
   # Action Cable Routes
-  
-  mount ActionCable.server => '/cable'
 
-  resources :chatrooms, param: :slug
-  resources :messages
+  mount ActionCable.server => '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

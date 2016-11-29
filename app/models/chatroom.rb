@@ -4,6 +4,7 @@ class Chatroom < ApplicationRecord
   has_many :users, through: :messages
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
   before_validation :sanitize, :slugify
+  belongs_to :walk
 
 
   def to_param
