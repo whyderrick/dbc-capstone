@@ -13,7 +13,7 @@ class WalksController < ApplicationController
     @walk = Walk.new(walks_params)
     @walk.requester_id = current_user.id
 
-    if @walk.save
+    if @walk.save      
       redirect_to user_walks_path(current_user)
     else
       render '/'
@@ -22,6 +22,7 @@ class WalksController < ApplicationController
   end
 
   def show
+
   end
 
   def edit

@@ -12,7 +12,7 @@
   				<li><%= walk.requester.username %></li>
   				<li><%= walk.destination %></li>
   				<li><%= walk.walk_time %></li>
-  				<%= link_to '+', {:controller => "chatrooms", :action => "show" } %>
+  				<%= link_to '+', {:controller => "chatrooms", :action => "index"} %>
   				</div>
   			<% end %>
   			</ul>
@@ -32,7 +32,7 @@
           <li><%= walk.requester.username %></li>
           <li><%= walk.destination %></li>
           <li><%= walk.walk_time %></li>
-          <%= link_to '+', {:controller => "chatrooms", :action => "show" } %>
+          <%= link_to "+", {:controller => "chatrooms", :action => "index" } %>
           </div>
         <% end %>
         </ul>

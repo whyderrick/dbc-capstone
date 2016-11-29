@@ -6,8 +6,13 @@ class ChatroomsController < ApplicationController
   end
 
   def new
+    p "*" * 80
+    p "*" * 80
+    p params
+    p "*" * 80
     if request.referrer.split("/").last == "chatrooms"
       flash[:notice] = nil
+
     end
     @chatroom = Chatroom.new
   end
