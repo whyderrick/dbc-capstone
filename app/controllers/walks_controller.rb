@@ -33,9 +33,8 @@ class WalksController < ApplicationController
     @walk.guardian_id ||= params[:guardian_id]
 
     if @walk.save
-      @walk.chatroom = Chatroom.new(topic: @walk.id)
-      @walk.accepted = true 
-      redirect_to user_walk_path(@walk)
+      @walk.chatroom = Chatroom.create(topic: @walk.id)
+      redirect_to @walk.chatroom
     else
       redirect_back
     end
