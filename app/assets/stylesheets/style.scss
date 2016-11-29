@@ -9,7 +9,7 @@
 
 
 html, body {
-  height: 100%;
+  height: 80%;
   margin: 0;
   padding: 10px;
    }
@@ -57,3 +57,17 @@ html, body {
   font-weight: 300;
 }
 
+ //insert into style sheet
+ .google-maps {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% ;
+    height: 100% ;
+}
