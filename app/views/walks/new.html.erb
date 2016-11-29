@@ -2,13 +2,6 @@
 	<h2>Request a walk</h2>
 </div>
 
-
-<div id="group-form" class="section">
-
-	<%= render 'form'  %>
-
-</div>
-
  <body>
     <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location">
@@ -16,15 +9,17 @@
     <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location">
 
+    <button type="submit" id="submission_form" class="button blue">Submit</button>
+
     <div id="mode-selector" class="controls">
       <input type="radio" name="type" id="changemode-walking" checked="checked">
       <label for="changemode-walking">Walking</label>
 
-      <input type="radio" name="type" id="changemode-transit">
+      <!-- <input type="radio" name="type" id="changemode-transit">
       <label for="changemode-transit">Transit</label>
 
       <input type="radio" name="type" id="changemode-driving">
-      <label for="changemode-driving">Driving</label>
+      <label for="changemode-driving">Driving</label> -->
     </div>
 
     <div id="map"></div>
@@ -34,15 +29,23 @@ function initMap() {
   var origin_place_id = null;
   var destination_place_id = null;
   var travel_mode = google.maps.TravelMode.WALKING;
-  navigator.geolocation.getCurrentPosition(function (position) {                                                              //This gets the
-     var latitude = position.coords.latitude;                    //users current
-     var longitude = position.coords.longitude;                 //location
+  navigator.geolocation.getCurrentPosition(function (position) {                                                              
+     var latitude = position.coords.latitude;                    
+     var longitude = position.coords.longitude;              
      var coords = new google.maps.LatLng(latitude, longitude); 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    mapTypeControl: false,
-    center: coords,
-    zoom: 15
-  });
+     var map = new google.maps.Map(document.getElementById('map'), {
+       mapTypeControl: false,
+       center: coords,
+       zoom: 15
+     });
+  	 // Place a draggable marker on the map
+		var marker = new google.maps.Marker({
+		    position: coords,
+		    map: map,
+		    draggable:true,
+		    title:"Drag me!"
+		});
+
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer;
   directionsDisplay.setMap(map);
@@ -50,10 +53,12 @@ function initMap() {
   var origin_input = document.getElementById('origin-input');
   var destination_input = document.getElementById('destination-input');
   var modes = document.getElementById('mode-selector');
+  var submit_form = document.getElementById('submission_form')
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(destination_input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(submit_form);
 
   var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
   origin_autocomplete.bindTo('bounds', map);
@@ -112,6 +117,7 @@ function initMap() {
           directionsService, directionsDisplay);
   });
 
+  //////// Logic for creating the route between two destinations ///////////
   function route(origin_place_id, destination_place_id, travel_mode,
                  directionsService, directionsDisplay) {
     if (!origin_place_id || !destination_place_id) {
@@ -129,6 +135,38 @@ function initMap() {
       }
     });
   };
+  ////////////////////////////// END /////////////////////////////////
+
+
+  ////////////////// Submit origin_place and destination /////////////////
+  function submitForm(){
+	 $("#submission_form").on("submit", function(event){
+     event.preventDefault();
+ 
+     var submitForm = $(this);
+     var url = submitForm.attr("action");
+     var method = submitForm.attr("method");
+     var data = submitForm.serialize();
+
+ 
+     // var request = $.ajax({
+     //   url: url,
+     //   method: method,
+     //   data: data
+     // });
+ 
+     // request.done(function(response){
+     //   console.log("success");
+     //   console.log(response);
+     //   $(".list").append(response);
+     //   submitNewHorseTarget.hide();
+     //   $("#add-horse-button").show();
+     // });
+ 
+   });
+ };
+  ////////////////////////////// END ///////////////////////////////////////////
+
  });
 }
 
@@ -136,4 +174,11 @@ function initMap() {
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&signed_in=true&libraries=places&callback=initMap"
         async defer></script>
   </body>
+
+<div id="group-form" class="section">
+
+	<%= render 'form'  %>
+
+</div>
+
 
