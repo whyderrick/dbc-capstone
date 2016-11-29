@@ -1,4 +1,5 @@
 class WalksController < ApplicationController
+  before_action :verify_logged_in
 
   def index
     @walks = current_user.walks
@@ -44,7 +45,13 @@ class WalksController < ApplicationController
   def destroy
   end
 
-private
+  private
+
+  def verify_logged_in
+    if current_user.nil?
+      redirect_to '/'
+    end
+  end
 
   def walks_params
     params.require(:walk).permit(:starting_location, :walk_time, :destination)

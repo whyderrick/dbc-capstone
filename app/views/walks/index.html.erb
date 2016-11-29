@@ -6,19 +6,28 @@
   		<div class="card-stacked">
   			<ul>
           <% @walks[:upcoming_walks].each do |walk|%>
-          <p> <%= walk.id %> </p>
-  				<div id="cards-content">
-  				<li><%= walk.starting_location %></li>
-  				<li><%= walk.accepted %></li>
-  				<li><%= walk.requester.username %></li>
-  				<li><%= walk.destination %></li>
-  				<li><%= walk.walk_time %></li>
+    				<div id="cards-content">
+              <!--  Possible this iframe is in the wrong spot -->
+              <div class="google-maps">
+                <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                  &destination=<%= walk.destination %>
+                  &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                  &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+                </iframe>
+              </div>
 
-          <% if walk.accepted == false %>
-  				  <%= link_to 'Enter Chat', walk.chatroom %>
-  				<% end %>
+      				<li><%= walk.starting_location %></li>
+      				<li><%= walk.accepted %></li>
+      				<li><%= walk.requester.username %></li>
+      				<li><%= walk.destination %></li>
+      				<li><%= walk.walk_time %></li>
 
-          </div>
+              <% if walk.accepted == false %>
+      				  <%= link_to 'Enter Chat', walk.chatroom %>
+      				<% end %>
+
+            </div>
+
   			<% end %>
   			</ul>
   	  </div>
