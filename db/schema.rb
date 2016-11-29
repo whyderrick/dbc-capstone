@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129051115) do
+
+ActiveRecord::Schema.define(version: 20161128192125) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +41,17 @@ ActiveRecord::Schema.define(version: 20161129051115) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "description"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "email"
+    t.string   "token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["group_id"], name: "index_invitations_on_group_id", using: :btree
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -101,6 +114,9 @@ ActiveRecord::Schema.define(version: 20161129051115) do
 
   add_foreign_key "chatrooms", "walks"
   add_foreign_key "conversations", "walks"
+  add_foreign_key "invitations", "groups"
+  add_foreign_key "invitations", "users", column: "recipient_id"
+  add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users", column: "member_id"
   add_foreign_key "messages", "chatrooms"

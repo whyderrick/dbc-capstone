@@ -22,9 +22,9 @@ class User < ApplicationRecord
     user_walks = all_walks
 
     upcoming_requests =
-      user_walks[:requested_walks].where("walk_time < now()")
+      user_walks[:requested_walks].where("walk_time > now()")
     upcoming_guards =
-      user_walks[:guarded_walks].where( "walk_time < now()")
+      user_walks[:guarded_walks].where( "walk_time > now()")
 
     upcoming_walks = upcoming_requests + upcoming_guards
 
@@ -33,8 +33,8 @@ class User < ApplicationRecord
   def recent_walks
     user_walks = all_walks
 
-    recent_requests = user_walks[:requested_walks].where( "walk_time > now()" ).last(5)
-    recent_guards = user_walks[:guarded_walks].where( "walk_time > now()" ).last(5)
+    recent_requests = user_walks[:requested_walks].where( "walk_time < now()" ).last(5)
+    recent_guards = user_walks[:guarded_walks].where( "walk_time < now()" ).last(5)
 
     recent_walks = recent_requests + recent_guards
   end

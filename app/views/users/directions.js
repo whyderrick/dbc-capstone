@@ -1,14 +1,3 @@
-<div class="section grey-text text-darken-3 center-align"> 	
-	<h2>Request a walk</h2>
-</div>
-
-
-<div id="group-form" class="section">
-
-	<%= render 'form'  %>
-
-</div>
-
  <body>
     <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location">
@@ -34,14 +23,10 @@ function initMap() {
   var origin_place_id = null;
   var destination_place_id = null;
   var travel_mode = google.maps.TravelMode.WALKING;
-  navigator.geolocation.getCurrentPosition(function (position) {                                                              //This gets the
-     var latitude = position.coords.latitude;                    //users current
-     var longitude = position.coords.longitude;                 //location
-     var coords = new google.maps.LatLng(latitude, longitude); 
   var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeControl: false,
-    center: coords,
-    zoom: 15
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13
   });
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -128,12 +113,10 @@ function initMap() {
         window.alert('Directions request failed due to ' + status);
       }
     });
-  };
- });
+  }
 }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&signed_in=true&libraries=places&callback=initMap"
         async defer></script>
   </body>
-

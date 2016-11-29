@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get '/groups/new' => 'groups#new'
   post '/groups/new' => 'groups#create'
 
+  resources :chatrooms, param: :slug
+  resources :messages
+  resources :walks
+
  	resources :welcome, only: :index
   resources :groups
 
@@ -48,9 +52,8 @@ Rails.application.routes.draw do
   end
 
   # Action Cable Routes
-  
-  mount ActionCable.server => '/cable'
 
+  mount ActionCable.server => '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
