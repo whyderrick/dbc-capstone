@@ -5,13 +5,6 @@ class ChatroomsController < ApplicationController
     @chatrooms = Chatroom.all
   end
 
-  def new
-    if request.referrer.split("/").last == "chatrooms"
-      flash[:notice] = nil
-    end
-    @chatroom = Chatroom.new
-  end
-
   def edit
     @chatroom = Chatroom.find_by(slug: params[:slug])
   end
