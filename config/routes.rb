@@ -18,9 +18,12 @@ Rails.application.routes.draw do
 
  	resources :welcome, only: :index
   resources :groups
+
   resources :users do
-  	resources :walks, shallow: true #remove before presentation 
-  end 
+  	resources :walks
+  end
+
+   
   resources :sessions
 
   resources :chatrooms, param: :slug 
