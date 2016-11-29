@@ -14,7 +14,8 @@ class WalksController < ApplicationController
     @walk = Walk.new(walks_params)
     @walk.requester_id = current_user.id
 
-    if @walk.save
+    if @walk.save 
+      @walk.accepted = true      
       redirect_to user_walks_path(current_user)
     else
       render '/'
@@ -23,6 +24,7 @@ class WalksController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -33,7 +35,8 @@ class WalksController < ApplicationController
     @walk.guardian_id ||= params[:guardian_id]
 
     if @walk.save
-      redirect_to user_walk_path(@walk)
+      @walk.chatroom = Chatroom.create(topic: @walk.id)
+      redirect_to @walk.chatroom
     else
       redirect_back
     end
