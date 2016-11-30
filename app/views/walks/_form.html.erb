@@ -1,12 +1,10 @@
 <%= form_for [@current_user, @walk] do |f| %>
 	<div class="input-field col s12">
-		<%= label_tag(:starting_location, "Starting location:") %>
-	  <%= f.text_field :starting_location, class: "validate" %>
+	  <%= f.hidden_field :starting_location, id: "input_location", class: "validate" %>
   </div>
 
   <div class="input-field col s12">
- 		<%= label_tag(:destination, "destination:") %>
- 		<%= f.text_field :destination, class: "validate" %>
+ 		<%= f.hidden_field :destination, id: "input_destination", class: "validate" %>
   </div>
 
   <div class="input-field col s12">
