@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   resources :users do
   	resources :walks
   end
-   
+
   resources :sessions
 
-  resources :chatrooms, param: :slug 
+  resources :chatrooms, param: :slug
 
 
   # API Routes
