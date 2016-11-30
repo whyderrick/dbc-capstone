@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161128192125) do
-
+ActiveRecord::Schema.define(version: 20161129233859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,15 +22,6 @@ ActiveRecord::Schema.define(version: 20161128192125) do
     t.string   "slug"
     t.integer  "walk_id"
     t.index ["walk_id"], name: "index_chatrooms_on_walk_id", using: :btree
-  end
-
-  create_table "conversations", force: :cascade do |t|
-    t.string   "msg"
-    t.integer  "user_id"
-    t.integer  "walk_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["walk_id"], name: "index_conversations_on_walk_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
@@ -52,6 +41,19 @@ ActiveRecord::Schema.define(version: 20161128192125) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["group_id"], name: "index_invitations_on_group_id", using: :btree
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string   "recipient_email",                 null: false
+    t.integer  "group_id"
+    t.integer  "sender_id",                       null: false
+    t.integer  "recipient_id"
+    t.boolean  "accepted",        default: false
+    t.string   "token"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["group_id"], name: "index_invites_on_group_id", using: :btree
+    t.index ["recipient_email"], name: "index_invites_on_recipient_email", using: :btree
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -113,10 +115,12 @@ ActiveRecord::Schema.define(version: 20161128192125) do
   end
 
   add_foreign_key "chatrooms", "walks"
-  add_foreign_key "conversations", "walks"
   add_foreign_key "invitations", "groups"
   add_foreign_key "invitations", "users", column: "recipient_id"
   add_foreign_key "invitations", "users", column: "sender_id"
+  add_foreign_key "invites", "groups"
+  add_foreign_key "invites", "users", column: "recipient_id"
+  add_foreign_key "invites", "users", column: "sender_id"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users", column: "member_id"
   add_foreign_key "messages", "chatrooms"

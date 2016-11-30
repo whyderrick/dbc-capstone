@@ -4,7 +4,7 @@ class CreateInvites < ActiveRecord::Migration[5.0]
       t.string :recipient_email, null: false
       t.references :group, foreign_key: true, index: true
       t.integer :sender_id, null: false
-      t.string :recipient_id
+      t.integer :recipient_id
       t.boolean :accepted, default: false
       t.string :token
 
