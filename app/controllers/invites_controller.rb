@@ -30,7 +30,16 @@ class InvitesController < ApplicationController
   def update
     @invite = Invite.find(params[:id])
 
-    @invite.recipient.groups << @invite.group
+    @invite.accepted = params[:accepted]
+    @invite.save
+
+    if @invite.accepted == true
+      flash[:notice] = ["You're a member now"]
+      redirect_to @invite.group
+    else
+      flash[:notice] = ["You can request to join later if you change your mind"]
+      redirect_to '/'
+    end
   end
 
   private

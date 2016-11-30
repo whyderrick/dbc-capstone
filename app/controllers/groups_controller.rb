@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   def index
     @groups = Group.all
     @group_name = params[:group_name]

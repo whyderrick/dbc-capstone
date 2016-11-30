@@ -44,6 +44,12 @@ class User < ApplicationRecord
     recent_walks = recent_requests + recent_guards
   end
 
+  def invited_groups
+    invites = self.received_invites.where(accepted: nil)
+    invites.map { |invite| invite.group_id }
+  end
+
+
   private
     def all_walks
       walks = { requested_walks: self.requested_walks,

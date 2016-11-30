@@ -12,7 +12,7 @@ class Invite < ApplicationRecord
 
   private
     def associate_existing_user
-      existing_recipient = User.find_by_email(self.email)
+      existing_recipient = User.find_by_email(self.recipient_email)
 
       self.recipient_id = existing_recipient.id if existing_recipient
     end

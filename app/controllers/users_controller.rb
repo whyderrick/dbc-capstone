@@ -13,12 +13,12 @@ class UsersController < ApplicationController
 
     if @user.save
       if @token
-        invited_group = Invite.find_by_token(@token).group
-        users.groups << invited_group
+        register_through_invite
+      else
+        flash[:notice] = "You have successfully signed up."
+        login
+        redirect_to root_path
       end
-      flash[:notice] = "You have successfully signed up."
-      login
-      redirect_to root_path
     else
       @errors = @user.errors.full_messages
       render :new
@@ -42,6 +42,18 @@ private
 
   def users_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+
+  def register_through_invite
+    source_invite = Invite.find_by_token(@token)
+    source_invite.recipient_id = @user.id
+    invited_group = source_invite.group
+
+    flash[:notice] = "You have successfully signed up."
+    login
+
+    redirect_to invited_group
   end
 
 end
