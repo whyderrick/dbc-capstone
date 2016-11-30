@@ -28,6 +28,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @invite = Invite.new(group_id: params[:id])
     @walks = @group.available_walks
   end
 

@@ -26,17 +26,18 @@ RSpec.describe Invite, type: :model do
       expect(invite.recipient_email).to eq "durian@durian.com"
     end
 
-    it "is invalid without a token" do
-      invite.token = nil
-      expect(invite).to be_invalid
-    end
-
     it "is automatically assigned a token on creation" do
-      invite.token = nil
+      expect(invite.token).to be nil
       invite.save
-
       expect(invite.token).to_not be nil
     end
+
+    it "replaced user-provided token with a system one on create" do
+      invite.token = "dfanfdoinfodnf"
+      invite.save
+      expect(invite.token).not_to eq "dfanfdoinfodnf"
+    end
+
   end
 
   context "Associations" do

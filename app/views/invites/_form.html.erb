@@ -1,6 +1,6 @@
 <%= form_for @invite, url: group_invites_path(@invite.group) do |f| %>
   <%= f.hidden_field :group_id, value: @invite.group_id%>
-  <%= f.label :email%>
-  <%= f.email_field :email, placeholder: 'example@example.com' %>
+  <%= f.label :recipient_email%>
+  <%= f.email_field :recipient_email, placeholder: 'example@example.com' %>
   <%= f.submit 'Send an invite' %>
 <% end %>
