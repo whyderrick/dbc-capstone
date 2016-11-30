@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   def index
     @groups = Group.all
     @group_name = params[:group_name]
@@ -19,6 +18,11 @@ class GroupsController < ApplicationController
     @group = Group.new(groups_params)
 
     if @group.save
+      # Write a new relationship to the membership join table
+      # to add the creator as a group member and admin
+
+      Membership.create(group_id: @group, member_id: current_user, admin: true)
+      @group.members << current_user
       redirect_to '/groups/index'
     else
       @errors = @group.errors.full_messages
@@ -28,6 +32,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @invite = Invite.new(group_id: params[:id])
     @walks = @group.available_walks
   end
 

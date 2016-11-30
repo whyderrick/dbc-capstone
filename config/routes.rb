@@ -17,15 +17,17 @@ Rails.application.routes.draw do
   post '/groups/new' => 'groups#create'
 
  	resources :welcome, only: :index
-  resources :groups
+  resources :groups do
+    resources :invites
+  end
 
   resources :users do
   	resources :walks
   end
-   
+
   resources :sessions
 
-  resources :chatrooms, param: :slug 
+  resources :chatrooms, param: :slug
 
 
   # API Routes
