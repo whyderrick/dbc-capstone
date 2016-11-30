@@ -7,7 +7,7 @@
         Want to join?
       </p>
       <%= link_to "Accept Invite", group_invite_path( @group.id, grab_user_invite.id, accepted: true ), method: :put %>
-      <%= link_to "Decline Invite", {controller: "invites", action: :update, group_id: @group.id, invite_id: 1, accepted: false }, method: "put" %>
+      <%= link_to "Decline Invite", {controller: "invites", action: :update, group_id: @group.id, invite_id: grab_user_invite, accepted: false }, method: "put" %>
     </div>
   <% else %>
     <h3>Invite someone you trust</h3>

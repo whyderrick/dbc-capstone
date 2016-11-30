@@ -35,6 +35,7 @@ class InvitesController < ApplicationController
 
     if @invite.accepted == true
       flash[:notice] = ["You're a member now"]
+      @invite.recipient.groups << @invite.group
       redirect_to @invite.group
     else
       flash[:notice] = ["You can request to join later if you change your mind"]
