@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
     @group = Group.new(groups_params)
 
     if @group.save
+      @group.members << current_user
       redirect_to '/groups/index'
     else
       @errors = @group.errors.full_messages

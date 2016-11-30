@@ -4,11 +4,18 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @token = params[:invite_token]
   end
 
   def create
-   @user = User.new(users_params)
+    @user = User.new(users_params)
+    @token = params[:invite_token]
+
     if @user.save
+      if @token
+        invited_group = Invite.find_by_token(@token).group
+        users.groups << invited_group
+      end
       flash[:notice] = "You have successfully signed up."
       login
       redirect_to root_path
@@ -30,7 +37,7 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  
+
 private
 
   def users_params

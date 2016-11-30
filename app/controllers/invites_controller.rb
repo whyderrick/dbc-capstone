@@ -24,6 +24,15 @@ class InvitesController < ApplicationController
     end
   end
 
+# Defining the update route for invites will allow someone to accept membership
+# to a group. Using recipient instead of current_user should keep multiple
+# people from joining a group through a single invitation.
+  def update
+    @invite = Invite.find(params[:id])
+
+    @invite.recipient.groups << @invite.group
+  end
+
   private
     def invite_params
       params.require(:invite).permit(:recipient_email, :group_id)
