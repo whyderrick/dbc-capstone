@@ -20,15 +20,17 @@ Rails.application.routes.draw do
   resources :messages
 
  	resources :welcome, only: :index
-  resources :groups
+  resources :groups do
+    resources :invites
+  end
 
   resources :users do
   	resources :walks
   end
-   
+
   resources :sessions
 
-  resources :chatrooms, param: :slug 
+  resources :chatrooms, param: :slug
 
   resources :messages
 

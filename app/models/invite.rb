@@ -5,4 +5,6 @@ class Invite < ApplicationRecord
 
   validates :recipient_email, :group_id, :sender_id, :token, {presence: true}
   validates :recipient_email, {uniqueness: { scope: :group } }
+
+  
 end

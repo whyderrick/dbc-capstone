@@ -1,8 +1,7 @@
-<h3>Welcome to the group : <%= @group.location%></h3>
-<p>Here is the list of available walk requests</p>
-
 <div class="col s12 m6">
-  <h2 class="header"></h2>
+  <h2 class="header"> Welcome to the group: <%=@group.name%></h2>
+  <h3>Invite someone you trust</h3>
+  <%= render "invites/form" %>
   <div class="card horizontal">
 
 		<div class="card-stacked">
