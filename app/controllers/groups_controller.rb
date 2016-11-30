@@ -18,6 +18,10 @@ class GroupsController < ApplicationController
     @group = Group.new(groups_params)
 
     if @group.save
+      # Write a new relationship to the membership join table
+      # to add the creator as a group member and admin
+
+      Membership.create(group_id: @group, member_id: current_user, admin: true)
       @group.members << current_user
       redirect_to '/groups/index'
     else
