@@ -5,7 +5,7 @@ class CreateInvites < ActiveRecord::Migration[5.0]
       t.references :group, foreign_key: true, index: true
       t.integer :sender_id, null: false
       t.integer :recipient_id
-      t.boolean :accepted, null: false
+      t.boolean :accepted, null: true
       t.string :token
 
       t.timestamps
