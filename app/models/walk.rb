@@ -1,4 +1,5 @@
 class Walk < ApplicationRecord
+  has_one :chatroom
   
 	has_many :reports
 	has_many :conversations
