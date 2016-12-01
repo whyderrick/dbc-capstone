@@ -9,10 +9,10 @@ class InvitesController < ApplicationController
     if @invite.save
       # Send an email to the address in recipient_email
       if @invite.recipient
-        InviteMailer.invite_existing_user(@invite).deliver
+        InviteMailer.invite_existing_user(@invite).deliver_now
       else
         # Send the "you're invited to join SafeWalk email"
-        InviteMailer.invite_new_user(@invite).deliver
+        InviteMailer.invite_new_user(@invite).deliver_now
       end
     else
       flash[:notice] = { error: ["Sorry, but your invitation didn't go through"] }

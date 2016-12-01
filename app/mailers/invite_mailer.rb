@@ -1,5 +1,4 @@
 class InviteMailer < ApplicationMailer
-  default from: 'whyderrick@outlook.com'
 
   def invite_new_user(invite)
     @invite = invite
