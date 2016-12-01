@@ -1,19 +1,20 @@
 <%= form_for [@current_user, @walk] do |f| %>
-	<div class="input-field col s12">
-	  <%= f.hidden_field :starting_location, id: "input_location", class: "validate" %>
-  </div>
+  <div class="row">
+  	<div class="input-field">
+  	  <%= f.hidden_field :starting_location, id: "input_location", class: "validate" %>
+    </div>
 
-  <div class="input-field col s12">
- 		<%= f.hidden_field :destination, id: "input_destination", class: "validate" %>
-  </div>
+    <div class="input-field">
+   		<%= f.hidden_field :destination, id: "input_destination", class: "validate" %>
+    </div>
 
-  <div class="input-field col s12">
- 		<%#= label_tag(:walk_time, "Time to go:") %>
- 		<%= f.datetime_local_field :walk_time, class: "validate" %>
-  </div>
+    <div class="input-field col offset-s2">
+   		<%= f.datetime_local_field :walk_time, class: "validate" %>
+    </div>
 
 
-  <div class="input-field col s12">
-  	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
+    <div class="input-field col s6">
+    	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
+    </div>
   </div>
 <% end %>
