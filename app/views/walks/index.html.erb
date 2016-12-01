@@ -6,13 +6,6 @@
     <h2 class="header"> Coming up soon</h2>
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
-      <div class="google-maps">
-              <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
-                    &destination=<%= walk.destination %>
-                    &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                    &mode=walking" width="600", height="450" frameborder="0" style="border:0">
-              </iframe>
-            </div>
       </div>
         <ul>
           <% @walks[:upcoming_walks].each do |walk|%>
@@ -25,6 +18,13 @@
             <% if walk.accepted == true %>
               <%= link_to 'Enter Chat', walk.chatroom %>
             <% end %>
+            <div class="google-maps">
+              <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                    &destination=<%= walk.destination %>
+                    &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                    &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+              </iframe>
+            </div>
           </div>
         <% end %>
         </ul>
