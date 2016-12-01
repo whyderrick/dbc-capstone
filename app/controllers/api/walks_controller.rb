@@ -1,4 +1,4 @@
-class Api::WalksController << Api::ApplicationController
+class Api::WalksController < Api::ApplicationController
   def index
     render json: current_user.walks
   end
@@ -8,6 +8,7 @@ class Api::WalksController << Api::ApplicationController
   end
 
   def create
+    puts session.inspect
     walk = Walk.new(walk_params)
     walk.requester_id = current_user.id
 
