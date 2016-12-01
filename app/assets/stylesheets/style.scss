@@ -28,19 +28,22 @@ html, body {
 }
 
 #origin-input,
-#destination-input {
+#destination-input,
+#submission_form {
   background-color: #fff;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
+  margin-top: 10px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
   width: 200px;
 }
 
 #origin-input:focus,
-#destination-input:focus {
+#destination-input:focus,
+#submission_form {
   border-color: #4d90fe;
 }
 
@@ -57,7 +60,7 @@ html, body {
   font-weight: 300;
 }
 
- //insert into style sheet
+
  .google-maps {
     position: relative;
     padding-bottom: 75%;
