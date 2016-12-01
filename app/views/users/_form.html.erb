@@ -2,6 +2,9 @@
 		<%= label_tag(:username, "User Name:") %>
 	  <%= f.text_field :username, class: "validate" %>
 
+    <% if @token %>
+      <%= hidden_field_tag :invite_token, @token %>
+    <% end %>
 
  		<%= label_tag(:email, "Email:") %>
  		<%= f.email_field :email, class: "validate" %>
@@ -13,5 +16,5 @@
  		<%= f.password_field :password_confirmation, class: "validate" %>
 
   	<%= f.submit "Submit", class: "btn waves-effect waves-light right" %>
-  	
+
 <% end %>

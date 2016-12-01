@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   post '/groups/new' => 'groups#create'
 
  	resources :welcome, only: :index
-  resources :groups
+  resources :groups do
+    resources :invites
+  end
 
   resources :users do
   	resources :walks

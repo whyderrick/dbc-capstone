@@ -1,10 +1,19 @@
-<h3>Welcome to the group : <%= @group.location%></h3>
-<p>Here is the list of available walk requests</p>
-
 <div class="col s12 m6">
-  <h2 class="header"></h2>
+  <h2 class="header"> Welcome to the group: <%=@group.name%></h2>
+  <% if invited? %>
+    <div class= "group-preview">
+      <h3>You are previewing this group</h3>
+      <p>
+        Want to join?
+      </p>
+      <%= link_to "Accept Invite", group_invite_path( @group.id, grab_user_invite.id, accepted: true ), method: :put %>
+      <%= link_to "Decline Invite", {controller: "invites", action: :update, group_id: @group.id, invite_id: grab_user_invite, accepted: false }, method: "put" %>
+    </div>
+  <% else %>
+    <h3>Invite someone you trust</h3>
+    <%= render "invites/form" %>
+  <% end %>
   <div class="card horizontal">
-
 		<div class="card-stacked">
 			<ul>
 				<% @walks.each do |walk|%>
