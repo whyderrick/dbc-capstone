@@ -1,0 +1,24 @@
+<div class="section grey-text text-darken-3 center-align"> 	
+	<h2>Login</h2>
+</div>
+
+<div id="session-form" class="section">
+
+<%= form_tag({controller: "sessions", action: "create"}, method: "post") do %>
+  <div class="input-field col s12">
+ 		<%= label_tag(:email, "Email:") %>
+ 		<%= email_field_tag :email, nil, class: "validate"  %>
+  </div>
+
+  <div class="input-field col s12">
+ 		<%= label_tag(:password, "Password:") %>
+ 		<%= password_field_tag :password %>
+  </div>
+
+  <div class="input-field col s12">
+		<%= submit_tag "Submit", class: "btn waves-effect waves-light right" %>
+	</div>
+
+<% end %>
+
+</div>

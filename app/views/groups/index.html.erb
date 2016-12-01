@@ -1,0 +1,16 @@
+<div class="section grey-text text-darken-3 center-align">  
+  <h3>Groups</h3>
+</div>
+
+<%= render 'search' %>
+
+
+<div class="row">
+  <ul class="collection with-header">
+		<li class="collection-header"><h4>List of all the groups</h4></li>
+    
+		<%= render partial: 'group', collection: @groups %>
+
+	</ul>
+
+</div>

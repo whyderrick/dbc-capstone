@@ -1,0 +1,14 @@
+services:
+  - postgresql
+language: ruby
+rvm:
+  - 2.3.1
+env:
+  - DB=postgresql
+before_script:
+  - psql -c 'create database safewalk_test;' -U postgres
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake db:seed RAILS_ENV=test
+  - bundle exec rspec spec/
