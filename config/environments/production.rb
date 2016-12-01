@@ -3,7 +3,7 @@ Rails.application.configure do
   
   # actioncable setting for deployment to Heroku, default action is set to localhost
   config.web_socket_server_url = "wss://safewalk-dbc.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://safewalk-dbc.herokuapp.com/']
+  config.action_cable.allowed_request_origins = ["http://www.safewalk-dbc.net"]
 
   
   # Code is not reloaded between requests.
