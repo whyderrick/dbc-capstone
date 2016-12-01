@@ -11,7 +11,8 @@
             <li><%= walk.accepted %></li>
             <li><%= walk.requester.username %> has requested a walk</li>
             <li>Destination: <%= walk.destination %></li>
-            <li>Walk requested for: <%= walk.walk_time %></li>          <% if walk.accepted == true %>
+            <li>Walk requested for: <%= walk.walk_time %></li>
+            <% if walk.accepted == false %>
               <%= link_to 'Enter Chat', walk.chatroom %>
             <% end %>
             <div class="google-maps">
@@ -41,7 +42,7 @@
           <li><%= walk.destination %></li>
           <li><%= walk.walk_time %></li>
           <%= link_to 'Reviews', '/' %>
-          <!-- This link is currently stubbed. Update before presentation-->  
+          <!-- This link is currently stubbed. Update before presentation-->
           </div>
         <% end %>
         </ul>
