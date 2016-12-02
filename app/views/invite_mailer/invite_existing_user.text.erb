@@ -1,0 +1,12 @@
+You're Invited to a New Safewalk Group!
+===============================================
+
+Hi there. A friend of yours is a member of <%= @invite.group.name %> on Safewalk! They thought you'd be a great addition.
+
+Safewalk is a community platform built around real-life friends to empower people to connect and support one another through unsafe scenarios.
+
+Now that you're invited, you can check out <%= @invite.group.name %>. In order to keep things private, your invite will expire in a week.  Follow this link to login and to check out the community: <%= link_to "login", login_url(invite_token: @invite.token)
+  %>
+
+Thanks for making safety possible!
+- The Safewalk Team

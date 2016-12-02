@@ -104,6 +104,9 @@ ActiveRecord::Schema.define(version: 20161129233859) do
   end
 
   add_foreign_key "chatrooms", "walks"
+  add_foreign_key "invitations", "groups"
+  add_foreign_key "invitations", "users", column: "recipient_id"
+  add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "invites", "groups"
   add_foreign_key "invites", "users", column: "recipient_id"
   add_foreign_key "invites", "users", column: "sender_id"
