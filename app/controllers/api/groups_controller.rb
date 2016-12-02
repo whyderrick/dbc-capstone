@@ -25,9 +25,10 @@ class Api::GroupsController < Api::ApplicationController
 
   def create
     group = Group.new(group_params)
-    group.requester_id = current_user.id
 
     if group.save
+      current_user.groups << group
+
       render json: group, status: 201
     else
       render json: group, status: 403
