@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WalksController, type: :controller do
-  
+RSpec.describe WalksController, type: :controller do  
 let!(:walk) { Walk.create!(starting_location: "oakland", requester_id: 1, accepted: false) }
 
   describe "GET #index" do

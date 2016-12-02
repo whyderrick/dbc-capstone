@@ -26,7 +26,7 @@ let!(:group) { Group.create!(name: "darren", location: "Oakland") }
 
   describe "GET #show" do
     it "returns http success" do
-      get :show,  params: {id: group.id}
+      get :show,  params:{id: group.id}
       expect(response).to have_http_status(200)
     end
   end
