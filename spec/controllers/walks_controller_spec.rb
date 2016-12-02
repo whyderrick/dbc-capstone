@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe WalksController, type: :controller do
+RSpec.describe WalksController, type: :controller do  
+let!(:walk) { Walk.create!(starting_location: "oakland", requester_id: 1, accepted: false) }
 
   describe "GET #index" do
     xit "returns http success" do
@@ -25,8 +26,8 @@ RSpec.describe WalksController, type: :controller do
 
   describe "GET #show" do
     xit "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      get :show, {id: walk.id}
+      expect(response).to have_http_status(200)
     end
   end
 

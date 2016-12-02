@@ -1,45 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+let!(:user) { User.create!(username: "darren", email: "darren@darren.com", password: "password",) }
 
   describe "GET #index" do
-    xit "returns http success" do
+    it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
-    xit "returns http success" do
+    it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #create" do
-    xit "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+    it "returns new username" do
+      post :create, params: {user: {username: "Derrick"}}
+      expect(assigns(:user).username).to eq "Derrick"
     end
   end
 
   describe "GET #show" do
-    xit "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+    it "returns http success" do
+      get :show, params: {id: user.id}
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "GET #edit" do
-    xit "returns http success" do
-      get :edit
+    it "returns http success" do
+      get :edit, params: {id: user.id}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #update" do
-    xit "returns http success" do
-      get :update
+    it "returns http success" do
+      get :update, params: {id: user.id}
       expect(response).to have_http_status(:success)
     end
   end
