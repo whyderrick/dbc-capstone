@@ -1,0 +1,64 @@
+<div class="col s12 center-align">
+  <h2 class="header">Upcoming walks</h2>
+  <ul>
+    <% @walks[:upcoming_walks].each do |walk| %>
+      <li>
+        <div class="card">
+          <div class="card-image google_maps">
+            <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                  &destination=<%= walk.destination %>
+                  &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                  &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+            </iframe>
+          </div>
+          <div class="card-content">
+            <ul>
+              <li>Starting location: <%= walk.starting_location %></li>
+              <li>Walk destination: <%= walk.destination %></li>
+              <li>Walk time: <%= walk.walk_time %></li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <% if walk.accepted %>
+              <%= link_to "Coordinate with your companion", walk.chatroom %>
+            <% else %>
+              Your walk is still waiting for a companion.
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<!--  Recent Walks -->
+
+<div class="col s12 center-align">
+  <h2 class="header">Recent walks</h2>
+  <ul>
+    <% @walks[:recent_walks].each do |walk| %>
+      <li>
+        <div class="card">
+          <div class="card-image google_maps">
+            <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                  &destination=<%= walk.destination %>
+                  &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                  &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+            </iframe>
+          </div>
+          <div class="card-content">
+            <ul>
+              <li>Starting location: <%= walk.starting_location %></li>
+              <li>Walk destination: <%= walk.destination %></li>
+              <li>Walk time: <%= walk.walk_time %></li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <%= link_to 'Leave a report', '/' %>
+            <!--  Intentionally stubbed link for now. -->
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

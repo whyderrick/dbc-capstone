@@ -1,31 +1,30 @@
 <div class="row center-align">
-  <h1>All your walks</h1>
   <div class="col s12 m6">
-      <h2 class="header"> Coming up</h2>
-      <ul>
-        <% @walks[:upcoming_walks].each do |walk| %>
-          <div id="main_card" class="card">
-            <div class="card-stacked">
-              <div class="card-content">
-                <li>Starting location: <%= walk.starting_location %></li>
-                <li><%= walk.accepted %></li>
-                <li><%= walk.requester.username %> has requested a walk</li>
-                <li>Destination: <%= walk.destination %></li>
-                <li>Walk requested for: <%= walk.walk_time %></li>
-                <% if walk.accepted == true %>
-                  <%= link_to 'Enter Chat', walk.chatroom %>
-                <% end %>
-                <div class="google-maps">
-                  <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
-                        &destination=<%= walk.destination %>
-                        &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                        &mode=walking" width="600", height="450" frameborder="0" style="border:0">
-                  </iframe>
-                   </div>
-              </div>
+    <h2 class="header"> Coming up</h2>
+    <ul>
+      <% @walks[:upcoming_walks].each do |walk| %>
+        <div id="main_card" class="card">
+          <div class="card-stacked">
+            <div class="card-content">
+              <li>Starting location: <%= walk.starting_location %></li>
+              <li><%= walk.accepted %></li>
+              <li><%= walk.requester.username %> has requested a walk</li>
+              <li>Destination: <%= walk.destination %></li>
+              <li>Walk requested for: <%= walk.walk_time %></li>
+              <% if walk.accepted == true %>
+                <%= link_to 'Enter Chat', walk.chatroom %>
+              <% end %>
+              <div class="google-maps">
+                <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                      &destination=<%= walk.destination %>
+                      &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                      &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+                </iframe>
+                 </div>
             </div>
           </div>
-        <% end %>
+        </div>
+      <% end %>
       </ul>
     </div>
 
