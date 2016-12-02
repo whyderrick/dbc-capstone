@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe GroupsController, type: :controller do
+let!(:group) { Group.create!(name: "darren", location: "Oakland") }
 
   describe "GET #index" do
     it "returns the index template" do 
@@ -17,29 +18,29 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe "GET #create" do
-    xit "returns the new template" do
-      get :create
-      expect(response).to render_template("create")
+    it "returns new username" do
+      post :create,  params: {group: {location: "Burlingame"}}
+      expect(assigns(:group).location).to eq "Burlingame"
     end
   end
 
   describe "GET #show" do
-    xit "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+    it "returns http success" do
+      get :show,  params: {id: group.id}
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "GET #edit" do
-    xit "returns http success" do
-      get :edit
+    it "returns http success" do
+      get :edit, params: {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #update" do
-    xit "returns http success" do
-      get :update
+    it "returns http success" do
+      get :update, params: {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
