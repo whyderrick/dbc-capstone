@@ -49,7 +49,10 @@ class User < ApplicationRecord
     invites.map { |invite| invite.group_id }
   end
 
-
+  def available_walks_across_groups
+    walks_array = self.groups.map{ |group| group.available_walks }
+    walks_array.flatten
+  end
   private
     def all_walks
       walks = { requested_walks: self.requested_walks,

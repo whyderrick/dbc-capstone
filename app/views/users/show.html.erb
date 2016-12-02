@@ -1,2 +1,57 @@
-<h1>Welcome to your page <%=current_user.username%></h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="col s10 center-align center">
+  <h2>Welcome <%= current_user.username %></h2>
+  <div id="u-show-groups">
+    <h3>Your Groups</h3>
+    <% if @user.groups %>
+      <ul class="collapsible" data-collapsible="accordion">
+        <% @user.groups.each do |group| %>
+          <li>
+            <div class="collapsible-header">
+              <span class="badge" data-badge-caption="available walks"><%=group.available_walks.size%></span><i class="material-icons">group</i> <%=group.name%>
+            </div>
+            <div class="collapsible-body grey lighten-3">
+              <%= link_to "Be someones companion", group %><br>
+              or<br>
+              <%= link_to "Invite someone to the group", group %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>
+        You aren't a member of any groups.
+      </p>
+      <p>
+        Want to <%= link_to "start one", new_group_path %>?
+      </p>
+    <% end %>
+  </div>
+  <div id="u-show-available">
+    <h2>Avaible Walks Across Your Groups </h2>
+    <ul>
+      <% @user.available_walks_across_groups.each do |walk| %>
+        <li>
+          <div class="card">
+            <div class="card-image google_maps">
+              <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                    &destination=<%= walk.destination %>
+                    &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                    &mode=walking" width="300", height="300" frameborder="0" style="border:0">
+              </iframe>
+            </div>
+            <div class="card-content">
+              <ul>
+                <li><strong>Starting location</strong>: <%= walk.starting_location %></li>
+                <li><strong>Walk destination</strong>: <%= walk.destination %></li>
+                <li><strong>Walk time</strong>: <%= walk.walk_time %></li>
+              </ul>
+            </div>
+            <div class="card-action">
+              <%= link_to 'Accept Walk', user_walk_path(walk.requester, walk, guardian_id: current_user.id), method: :put %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
