@@ -1,6 +1,5 @@
 class Api::ApplicationController < ActionController::Base
-  helper_method :current_user, :login, :authorize
-  before_action :validate_session_key
+  helper_method :current_user, :login, :authorize, :validate_session_key
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -16,8 +15,6 @@ class Api::ApplicationController < ActionController::Base
     	redirect_to '/login'
     end
   end
-
-  private
 
   # For XSS
   def validate_session_key
