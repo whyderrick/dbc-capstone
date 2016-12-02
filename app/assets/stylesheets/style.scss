@@ -37,7 +37,7 @@ html, body {
   margin-top: 10px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 200px;
+  width: 70%;
 }
 
 #origin-input:focus,
@@ -87,4 +87,25 @@ main_card {
   padding-bottom: 80px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.nav-wrapper .page-title {
+  font-size: 2.5em;
+}
+
+.icon-block .btn {
+  width: 100%
+}
+.map-input{
+  height: 1em;
+  padding: 3px;
+  transition: all 0.5s ease;
+}
+
+.map-input:focus{
+  height: 4em;
+}
+
+h2 {
+  font-size: 2.2em;
 }

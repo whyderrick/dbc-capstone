@@ -2,23 +2,17 @@
 	<h2>Request a walk</h2>
 </div>
 
- <body>
-  <input id="origin-input" value="" class="controls" type="text"
-      placeholder="Enter an origin location">
+ <body class="center-align">
+  <input id="origin-input" value="" class="controls map-input center-align" type="text"
+      placeholder="Starting location?">
 
-  <input id="destination-input" class="controls" type="text"
-      placeholder="Enter a destination location">
-  <button type="submit" id="submission_form" class="controls">Enter your coordonates </button>
+  <input id="destination-input" class="controls map-input center-align" type="text"
+      placeholder="Destination?">
+  <button type="submit" id="submission_form" class="controls">Enter your coordinates </button>
 
   <div id="mode-selector" class="controls">
     <input type="radio" name="type" id="changemode-walking" checked="checked">
     <label for="changemode-walking">Walking</label>
-
-    <!-- <input type="radio" name="type" id="changemode-transit">
-    <label for="changemode-transit">Transit</label>
-
-    <input type="radio" name="type" id="changemode-driving">
-    <label for="changemode-driving">Driving</label> -->
   </div>
 
   <div id="map"></div>
