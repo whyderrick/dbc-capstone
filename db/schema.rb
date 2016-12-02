@@ -32,26 +32,15 @@ ActiveRecord::Schema.define(version: 20161129233859) do
     t.text     "description"
   end
 
-  create_table "invitations", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.string   "email"
-    t.string   "token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["group_id"], name: "index_invitations_on_group_id", using: :btree
-  end
-
   create_table "invites", force: :cascade do |t|
-    t.string   "recipient_email",                 null: false
+    t.string   "recipient_email", null: false
     t.integer  "group_id"
-    t.integer  "sender_id",                       null: false
+    t.integer  "sender_id",       null: false
     t.integer  "recipient_id"
-    t.boolean  "accepted",        default: false
+    t.boolean  "accepted"
     t.string   "token"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["group_id"], name: "index_invites_on_group_id", using: :btree
     t.index ["recipient_email"], name: "index_invites_on_recipient_email", using: :btree
   end

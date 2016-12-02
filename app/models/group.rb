@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships
   has_many :invites
 
