@@ -1,14 +1,37 @@
 <h3>Welcome to GUARDIAN</h3>
 <p>Do you want to to create a private channel or do you want to join one in order to find a guardian ?</p>
 
-<div id="create_channel">
-	<ul>
-		<li><a href="/groups/new" id="create_private_channel" class="waves-effect waves-light btn-large">Create a private channel</a></li>
-		<li><a href="/groups/index" id="create_private_channel" class="waves-effect waves-light btn-large">Join an existing channel</a></li>
-
-    <% if current_user%>
-  		<li><a href="/users/<%=current_user.id%>/walks/new" class="waves-effect waves-light btn-large">Request a walk</a></li>
-    <% end %>
-
-	</ul>
+<div class="container">
+	<div class="section">
+		<div class="row">
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h1 class="center blue-text">
+						<i class="material-icons">group</i>
+					</h1>
+					<h5 class="center"><a href="/groups/new" id="create_private_channel" class="waves-effect waves-light btn-large">Create a private channel</a></h5>
+				</div>
+			</div>
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h1 class="center blue-text">
+						<i class="material-icons">group</i>
+					</h1>
+						<h5><a href="/groups/index" id="create_private_channel" class="waves-effect waves-light btn-large">Join an existing channel</a>
+						</h5>
+					</div>
+				</div>
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h1 class="center blue-text">
+						<i class="material-icons">group</i>
+					</h1>
+		    	<% if current_user%>
+			  		<h5><a href="/users/<%=current_user.id%>/walks/new" class="waves-effect waves-light btn-large">Request a walk</a>
+			  		</h5>
+		    	<% end %>
+		    </div>
+			</div>
+		</div>
+	</div>
 </div>
