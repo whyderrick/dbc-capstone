@@ -1,10 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  
+
   # actioncable setting for deployment to Heroku, default action is set to localhost
-  config.web_socket_server_url = "wss://www.safewalk-dbc.net/cable" 
+  config.web_socket_server_url = "wss://www.safewalk-dbc.net/cable"
   config.action_cable.allowed_request_origins = ["http://www.safewalk-dbc.net"]
-  
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -87,4 +87,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Add Mailgun config
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = {from: 'info@safewalk-dbc.net'}
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'safewalk-dbc.net',
+    :authentication => :plain,
+  }
+
+  config.action_mailer.default_url_options = { host: 'safewalk-dbc.net' }
 end
