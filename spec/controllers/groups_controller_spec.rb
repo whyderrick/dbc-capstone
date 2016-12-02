@@ -3,23 +3,23 @@ require 'rails_helper'
 RSpec.describe GroupsController, type: :controller do
 
   describe "GET #index" do
-    xit "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+    it "returns the index template" do 
+      get :index 
+      expect(response).to render_template("index")
     end
   end
 
   describe "GET #new" do
-    xit "returns http success" do
+    it "returns the new template" do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to render_template("new")
     end
   end
 
   describe "GET #create" do
-    xit "returns http success" do
+    xit "returns the new template" do
       get :create
-      expect(response).to have_http_status(:success)
+      expect(response).to render_template("create")
     end
   end
 
