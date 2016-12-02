@@ -1,4 +1,4 @@
-<div class="section grey-text text-darken-3 center-align"> 	
+<div class="section grey-text text-darken-3 center-align">
 	<h2>Request a walk</h2>
 </div>
 
@@ -28,10 +28,10 @@
 		  var origin_place_id = null;
 		  var destination_place_id = null;
 		  var travel_mode = google.maps.TravelMode.WALKING;
-	    navigator.geolocation.getCurrentPosition(function (position) {                                                              
-	     var latitude = position.coords.latitude;                    
-	     var longitude = position.coords.longitude;              
-	     var coords = new google.maps.LatLng(latitude, longitude); 
+	    navigator.geolocation.getCurrentPosition(function (position) {
+	     var latitude = position.coords.latitude;
+	     var longitude = position.coords.longitude;
+	     var coords = new google.maps.LatLng(latitude, longitude);
 	     var map = new google.maps.Map(document.getElementById('map'), {
 	       mapTypeControl: false,
 	       center: coords,
@@ -57,7 +57,7 @@
 		  marker.addListener('click', function() {
 		    geocodeLatLng(geocoder, map, infowindow);
 		  });
-		  
+
 		  function geocodeLatLng(geocoder, map, infowindow) {
 		  var input = (latitude+","+longitude);
 		  var latlngStr = input.split(',', 2);
@@ -190,7 +190,7 @@
 		}
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&signed_in=true&libraries=places&callback=initMap"
+    <script src="//maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY']%>&signed_in=true&libraries=places&callback=initMap"
         async defer></script>
   </body>
 
@@ -200,5 +200,3 @@
 	<%= render 'form'  %>
 
 </div>
-
-
