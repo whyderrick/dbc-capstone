@@ -16,6 +16,7 @@ class UsersController < ApplicationController
         register_through_invite
       else
         flash[:notice] = "You have successfully signed up."
+        UserMailer.welcome_email(@user).deliver_now
         login
         redirect_to root_path
       end
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit

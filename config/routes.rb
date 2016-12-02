@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :users, except: :index do
       resources :walks
+      resources :groups
     end
     resources :sessions
   end

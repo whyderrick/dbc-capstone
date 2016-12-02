@@ -1,40 +1,46 @@
 class Api::WalksController < Api::ApplicationController
+  before_action :set_all, only: [:index]
+  before_action :set_one, only: [:show]
+  before_action :validate_session_key
+
   def index
-    render json: current_user.walks
+    render json: @walks
   end
 
-  def new
-    @walk = Walk.new
+  def show
+    render json: @walk
   end
 
   def create
-    puts session.inspect
     walk = Walk.new(walk_params)
     walk.requester_id = current_user.id
 
     if walk.save
-      # testing if I need instance variables to render json
       render json: walk, status: 201
     else
       render json: walk, status: 403
     end
   end
 
-  def show
-    @walk = Walk.find(:id)
-  end
-
-  def edit
-  end
-
   def update
+    head :error
   end
 
   def destroy
+    head :error
   end
 
   private
-    def walk_params
-      params.require(:walk).permit(:starting_location, :walk_time, :destination)
-    end
+
+  def set_all
+    @walks = current_user.walks
+  end
+
+  def set_one
+    @walk = current_user.walks.where(id: params[:id]).first
+  end
+
+  def walk_params
+    params.require(:walk).permit(:starting_location, :walk_time, :destination)
+  end
 end
