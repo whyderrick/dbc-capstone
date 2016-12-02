@@ -3,12 +3,15 @@
 </div>
 
  <body class="center-align">
-  <input id="origin-input" value="" class="controls map-input center-align" type="text"
-      placeholder="Starting location?">
+  <div class="row">
+    <input id="origin-input" value="" class="controls map-input center-align col m3 s12" type="text"
+    placeholder="Starting location?">
 
-  <input id="destination-input" class="controls map-input center-align" type="text"
-      placeholder="Destination?">
-  <button type="submit" id="submission_form" class="controls">Enter your coordinates </button>
+    <input id="destination-input" class="controls map-input center-align col m3 s12" type="text"
+    placeholder="Destination?">
+ 
+    <button type="submit" id="submission_form" class="controls col m3 s12">Go! </button>
+  </div>
 
   <div id="mode-selector" class="controls">
     <input type="radio" name="type" id="changemode-walking" checked="checked">
@@ -87,8 +90,8 @@
 
 		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
 		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(destination_input);
-		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
 		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(submit_form);
+		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
 
 		  var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
 		  origin_autocomplete.bindTo('bounds', map);
