@@ -8,21 +8,21 @@
             <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
                   &destination=<%= walk.destination %>
                   &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                  &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+                  &mode=walking" width="600", height="300" frameborder="0" style="border:0">
             </iframe>
           </div>
           <div class="card-content">
             <ul>
-              <li>Starting location: <%= walk.starting_location %></li>
-              <li>Walk destination: <%= walk.destination %></li>
-              <li>Walk time: <%= walk.walk_time %></li>
+              <li><strong>Starting location</strong>: <%= walk.starting_location %></li>
+              <li><strong>Walk destination</strong>: <%= walk.destination %></li>
+              <li><strong>Walk time</strong>: <%= walk.walk_time %></li>
             </ul>
           </div>
           <div class="card-action">
             <% if walk.accepted %>
               <%= link_to "Coordinate with your companion", walk.chatroom %>
             <% else %>
-              Your walk is still waiting for a companion.
+              <strong>This walk is still waiting for a companion.</strong>
             <% end %>
           </div>
         </div>
@@ -43,14 +43,14 @@
             <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
                   &destination=<%= walk.destination %>
                   &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                  &mode=walking" width="600", height="450" frameborder="0" style="border:0">
+                  &mode=walking" width="600", height="300" frameborder="0" style="border:0">
             </iframe>
           </div>
           <div class="card-content">
             <ul>
-              <li>Starting location: <%= walk.starting_location %></li>
-              <li>Walk destination: <%= walk.destination %></li>
-              <li>Walk time: <%= walk.walk_time %></li>
+              <li><strong>Starting location</strong>: <%= walk.starting_location %></li>
+              <li><strong>Walk destination</strong>: <%= walk.destination %></li>
+              <li><strong>Walk time</strong>: <%= walk.walk_time %></li>
             </ul>
           </div>
           <div class="card-action">

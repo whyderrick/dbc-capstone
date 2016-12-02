@@ -1,59 +1,63 @@
-<div class="row center-align">
-  <div class="col s12 m6">
-    <h2 class="header"> Coming up</h2>
-    <ul>
-      <% @walks[:upcoming_walks].each do |walk| %>
-        <div id="main_card" class="card">
-          <div class="card-stacked">
-            <div class="card-content">
-              <li>Starting location: <%= walk.starting_location %></li>
-              <li><%= walk.accepted %></li>
-              <li><%= walk.requester.username %> has requested a walk</li>
-              <li>Destination: <%= walk.destination %></li>
-              <li>Walk requested for: <%= walk.walk_time %></li>
-              <% if walk.accepted == true %>
-                <%= link_to 'Enter Chat', walk.chatroom %>
-              <% end %>
-              <div class="google-maps">
-                <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
-                      &destination=<%= walk.destination %>
-                      &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                      &mode=walking" width="600", height="450" frameborder="0" style="border:0">
-                </iframe>
-                 </div>
-            </div>
+<div class="col s12 center-align">
+  <h2 class="header">Upcoming walks</h2>
+  <ul>
+    <% @walks[:upcoming_walks].each do |walk| %>
+      <li>
+        <div class="card">
+          <div class="card-image google_maps">
+            <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                  &destination=<%= walk.destination %>
+                  &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                  &mode=walking" width="600", height="300" frameborder="0" style="border:0">
+            </iframe>
+          </div>
+          <div class="card-content">
+            <ul>
+              <li><strong>Starting location</strong>: <%= walk.starting_location %></li>
+              <li><strong>Walk destination</strong>: <%= walk.destination %></li>
+              <li><strong>Walk time</strong>: <%= walk.walk_time %></li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <% if walk.accepted %>
+              <%= link_to "Coordinate with your companion", walk.chatroom %>
+            <% else %>
+              <strong>This walk is still waiting for a companion.</strong>
+            <% end %>
           </div>
         </div>
-      <% end %>
-      </ul>
-    </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 
-  <div class="col s12 m6">
-    <h2 class="header"> How'd It Go?</h2>
-    <ul>
-      <% @walks[:recent_walks].each do |walk| %>
-        <div id="main_card" class="card">
-          <div class="card-stacked">
-            <div class="card-content">
-              <li>Starting location: <%= walk.starting_location %></li>
-              <li><%= walk.accepted %></li>
-              <li><%= walk.requester.username %> has requested a walk</li>
-              <li>Destination: <%= walk.destination %></li>
-              <li>Walk requested for: <%= walk.walk_time %></li>
-              <%= link_to 'Reviews', '/' %>
-              <!-- This link is currently stubbed. Update before presentation-->
-              <div class="google-maps">
-                <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
-                      &destination=<%= walk.destination %>
-                      &key=<%=ENV['GOOGLE_API_KEY_2']%>
-                      &mode=walking" width="600", height="450" frameborder="0" style="border:0">
-                </iframe>
-              </div>
-            </div>
+<div class="col s12 center-align">
+  <h2 class="header">Recent walks</h2>
+  <ul>
+    <% @walks[:recent_walks].each do |walk| %>
+      <li>
+        <div class="card">
+          <div class="card-image google_maps">
+            <iframe src="//www.google.com/maps/embed/v1/directions?origin=<%= walk.starting_location %>
+                  &destination=<%= walk.destination %>
+                  &key=<%=ENV['GOOGLE_API_KEY_2']%>
+                  &mode=walking" width="600", height="300" frameborder="0" style="border:0">
+            </iframe>
+          </div>
+          <div class="card-content">
+            <ul>
+              <li><strong>Starting location</strong>: <%= walk.starting_location %></li>
+              <li><strong>Walk destination</strong>: <%= walk.destination %></li>
+              <li><strong>Walk time</strong>: <%= walk.walk_time %></li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <%= link_to 'Leave a report', '/' %>
+            <!--  Intentionally stubbed link for now. -->
           </div>
         </div>
-      <% end %>
-    </ul>
-  </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
