@@ -14,6 +14,8 @@ class InvitesController < ApplicationController
         # Send the "you're invited to join SafeWalk email"
         InviteMailer.invite_new_user(@invite).deliver_now
       end
+      flash[:notice] = "#{@invite.recipient_email} was successfully invited."
+      render @invite.group
     else
       flash[:notice] = { error: ["Sorry, but your invitation didn't go through"] }
       redirect_to @invite.group

@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.all
-    @group_name = params[:group_name]
+    @group_name = params[:group_title]
     if @group_name
       @groups = Group.search(@group_name)
+      p @groups
       # render :index
     else
       @groups = Group.all

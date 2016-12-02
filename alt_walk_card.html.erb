@@ -31,6 +31,7 @@
   </ul>
 </div>
 
+<!--  Recent Walks -->
 
 <div class="col s12 center-align">
   <h2 class="header">Recent walks</h2>
@@ -53,8 +54,7 @@
             </ul>
           </div>
           <div class="card-action">
-            <%= link_to 'Leave a report', '/' %>
-            <!--  Intentionally stubbed link for now. -->
+            <%= link_to 'Accept Walk', user_walk_path(walk.requester, walk, guardian_id: current_user.id), method: :put %>
           </div>
         </div>
       </li>

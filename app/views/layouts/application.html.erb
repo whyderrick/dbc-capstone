@@ -6,10 +6,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   </head>
 
   <body>
-  	<%= render '/shared/navbar' %>
-    <%= yield %>
+      <%= render '/shared/slide_bar' %>
+      <%= yield %>
   </body>
 </html>
